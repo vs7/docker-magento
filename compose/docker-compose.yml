@@ -6,9 +6,11 @@ version: "3"
 services:
   app:
     image: markoshust/magento-nginx:1.13-8
-    ports:
-      - "80:8000"
-      - "443:8443"
+    environment:
+      - VIRTUAL_HOST=myhost.example.com
+      - VIRTUAL_PROTO=https
+      - VIRTUAL_PORT=8443
+      - LETSENCRYPT_HOST=myhost.example.com
     links:
       - db
       - phpfpm

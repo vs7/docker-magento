@@ -12,7 +12,6 @@ services:
       - VIRTUAL_PORT=8443
       - LETSENCRYPT_HOST=myhost.example.com
     links:
-      - db
       - phpfpm
     volumes: &appvolumes
       - ~/.composer:/var/www/.composer:delegated
@@ -22,17 +21,7 @@ services:
 
   phpfpm:
     image: markoshust/magento-php:7.3-fpm-4
-    links:
-      - db
     volumes: *appvolumes
-
-  db:
-    image: percona:5.7
-    ports:
-      - "3306:3306"
-    env_file: env/db.env
-    volumes:
-      - dbdata:/var/lib/mysql
 
   redis:
     image: redis:5.0
@@ -63,7 +52,6 @@ services:
 
 volumes:
   appdata:
-  dbdata:
   rabbitmqdata:
   sockdata:
   ssldata:

@@ -15,7 +15,7 @@ services:
       - phpfpm
     volumes: &appvolumes
       - ~/.composer:/var/www/.composer:delegated
-      - appdata:/var/www/html
+      - ./src:/var/www/html
       - sockdata:/sock
       - ssldata:/etc/nginx/certs
 
@@ -51,7 +51,6 @@ services:
   #  volumes: *appvolumes
 
 volumes:
-  appdata:
   rabbitmqdata:
   sockdata:
   ssldata:
